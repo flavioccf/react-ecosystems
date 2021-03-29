@@ -2,7 +2,8 @@ import {
     loadTodosFailure, 
     loadTodosInProgress, 
     loadTodosSuccess,
-    createTodo 
+    createTodo,
+    removeTodo 
 } from '../actions';
 
 const url = process.env.REACT_APP_SERVER_URL;
@@ -40,3 +41,19 @@ export const addTodoRequest = text => async (dispatch, getState) => {
 export const displayAlert = text => () => {
     alert(text);
 };
+
+export const deleteTodoRequest = id => async (dispatch, getState) => {
+    try {
+        const response = await fetch(`${url}/todos/${id}`, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method: 'delete'
+        });
+        const removedTodo = await response.json();
+        console.log(removedTodo);
+        dispatch(removeTodo(removedTodo));
+    } catch(e) {
+        dispatch(displayAlert(e));
+    }
+}
