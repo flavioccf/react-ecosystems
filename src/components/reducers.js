@@ -32,9 +32,9 @@ export const todos = (state = [], action) => {
         return state.filter(todo => todo.id !== todoToRemove.id);
     }
     case MARK_TODO_AS_COMPLETED: {
-        const { text } = payload;
+        const { todo: todoToUpdate } = payload;
         return state.map(todo => {
-            if(todo.text === text) {
+            if(todo._id === todoToUpdate._id) {
                 return { ...todo, isCompleted: true};
             }
             return todo;
