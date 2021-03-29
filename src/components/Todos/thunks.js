@@ -5,7 +5,7 @@ import {
     createTodo,
     removeTodo, 
     markTodoAsCompleted
-} from '../actions';
+} from '../../actions';
 
 const url = process.env.REACT_APP_SERVER_URL;
 
